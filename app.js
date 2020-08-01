@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionTwoId].setAttribute("src", "./images/flower.jpg");
     }
     if (cardCount === CardArray.length) {
-      container.innerHTML = "Game Over";
+      grid.innerHTML = "Game Over";
     }
     cardsChosenName = [];
     cardsChosenId = [];
