@@ -72,12 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const grid = document.querySelector(".grid");
   const score = document.querySelector("#score");
+  const moves = document.querySelector("#moves");
   const over = document.querySelector(".over");
   const container = document.querySelector(".container");
   var cardsChosenName = [];
   var cardsChosenId = [];
   var cardsWon = [];
   var cardCount = 0;
+  var MoveCount = 0;
 
   // create board for memory game
   function createBoard() {
@@ -128,9 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(cardsChosenName);
     cardsChosenId.push(cardId);
     console.log(cardsChosenId);
+    MoveCount += 1;
     this.setAttribute("src", CardArray[cardId].img);
     if (cardsChosenName.length === 2) {
       setTimeout(checkForMatch, 500);
     }
+    moves.innerHTML = MoveCount;
   }
 });
