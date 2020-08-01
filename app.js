@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var cardsChosenName = [];
   var cardsChosenId = [];
   var cardsWon = [];
+  var chosenAlready = [];
   var cardCount = 0;
   var MoveCount = 0;
 
@@ -107,6 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionTwoId].setAttribute("src", "./images/black.png");
       cardsWon.push(cardsChosenName[0]);
       cardsWon.push(cardsChosenName[1]);
+      chosenAlready.push(optionOneId);
+      chosenAlready.push(optionTwoId);
       cardCount += 2;
     } else {
       alert("Wrong Match! Please Try Again");
@@ -126,15 +129,18 @@ document.addEventListener("DOMContentLoaded", () => {
   //   flip the card
   function flipcard() {
     var cardId = this.getAttribute("data-id");
-    cardsChosenName.push(CardArray[cardId].name);
-    console.log(cardsChosenName);
-    cardsChosenId.push(cardId);
-    console.log(cardsChosenId);
-    MoveCount += 1;
-    this.setAttribute("src", CardArray[cardId].img);
-    if (cardsChosenName.length === 2) {
-      setTimeout(checkForMatch, 500);
+    if (!chosenAlready.includes(cardId)) {
+      cardsChosenName.push(CardArray[cardId].name);
+      console.log(cardsChosenName);
+      cardsChosenId.push(cardId);
+      console.log(cardsChosenId);
+      MoveCount += 1;
+
+      this.setAttribute("src", CardArray[cardId].img);
+      if (cardsChosenName.length === 2) {
+        setTimeout(checkForMatch, 500);
+      }
+      moves.innerHTML = MoveCount;
     }
-    moves.innerHTML = MoveCount;
   }
 });
